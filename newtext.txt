@@ -1,0 +1,99 @@
+import java.util.Scanner;
+abstract class Bank1 {
+    public String Name = "myBank";
+    public String IFSC = "myBank1234";
+	public void bankDetail() 
+	{
+		System.out.print("Bank_Name:"+ Name + " " + "Bank_IFSC : " + IFSC);
+	}
+	abstract void Deposite();
+	abstract void Withdraw();
+	abstract void CheckBal();
+}
+                abstract class  bankService extends Bank1{
+                  		private double bal = 5000;
+                  		private int pwd;
+                  		public double money;
+                  <--shubham --/>		
+                  		
+                  	  public void Deposite() {
+                      	System.out.println("Enter Password");
+                      	try (Scanner s = new Scanner(System.in)) {
+							pwd=s.nextInt();
+						}
+                      	if(pwd==123) {
+                  	   System.out.println("Enter your Amount to Deposite: ");
+                  	   try (Scanner s1 = new Scanner(System.in)) {
+						money=s1.nextInt();
+					}
+                  	   bal=bal+money;
+                  	   System.out.println("Deposited Money: " + money);
+                  	   System.out.println("Total Money: " + bal);
+                       }  else {
+                  		   System.out.println("Incorrect Password");
+                     
+                  	   }
+                       
+                      }
+                       public void Withdraw() {
+                      	 
+                      	System.out.println("Enter Password");
+                      	try (Scanner s = new Scanner(System.in)) {
+							pwd=s.nextInt();
+						}
+                      	if(pwd==123) {
+                      	 System.out.println("Enter your Amount to Withdrawal: ");
+                    	   try (Scanner s1 = new Scanner(System.in)) {
+							money=s1.nextInt();
+						}
+                    	   bal=bal-money;
+                  	   System.out.println("Withdrawal Money: " + money);
+                  	   System.out.println(" Total Money: " + bal);
+                       } else {
+                  		   System.out.println("Incorrect Password");
+
+                  	   }
+                      }
+
+                      public void Checkbal() {
+                      	System.out.println("Enter Password");
+                      	Scanner s=new Scanner(System.in);
+                      	pwd=s.nextInt();
+                      
+                      if(pwd==123) {
+                  	   
+                  	   System.out.println("Total Balance : " + bal);
+                  	
+                       }else {
+                  		   System.out.println("Incorrect Password");
+                  		   
+                  	       }
+                 }
+                 } 
+                      class costumer{
+                     
+                      public static void main(String[] args) {
+                    	  bankService c=new bankService();
+                        c.bankDetail();
+                        int ch;
+                        System.out.println("1. Deposite: ");
+                        System.out.println("2. Withdrawal: ");
+                        System.out.println("3. Check Balance: ");
+                        System.out.println("\nEnter your Choice " );
+                        Scanner s2= new Scanner(System.in);
+                        ch=s2.nextInt();
+                        
+                        switch (ch)
+                        {
+                        case 1 : c.Deposite();
+                        break ;
+                        case 2 : c.Withdraw();;
+                        break;
+                        case 3 : c.Checkbal();
+                        break;
+                        default:
+                      	   System.out.println("Incorrect Choice....");
+                      	   
+                      	  }
+                      }                       
+}

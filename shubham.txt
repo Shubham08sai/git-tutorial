@@ -1,0 +1,103 @@
+ <servlet>
+   <servlet-name>first</servlet-name>
+   <servlet-class>com.servlets.FirstServlet</servlet-class>
+   </servlet>
+   <servlet>
+   <servlet-name>Second</servlet-name>
+   <servlet-class>com.servlets.SecondServlet</servlet-class>
+   </servlet>
+   <!-- -->mapping   
+   
+   <servlet-mapping>
+   <servlet-name>first</servlet-name>
+   <url-pattern>/web</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   <servlet-name>second</servlet-name>
+   <url-pattern>/second</url-pattern>
+   </servlet-mapping>
+  hello
+package com.servlets;
+import java.io.IOException;
+import java.io.PrintWriter;   
+import java.util.Date;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+public class FirstServlet implements Servlet{
+   //life cycle methods
+	ServletConfig conf;
+	public void init(ServletConfig conf) {
+		this.conf=conf;
+		System.out.println("creating object....");
+	}
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		System.out.println("Going to destroy");
+	}
+
+	@Override
+	public ServletConfig getServletConfig() {
+		// TODO Auto-generated method stub
+		return this.conf;
+	}
+
+	@Override
+	public String getServletInfo() {
+		// TODO Auto-generated method stub
+		return "this servlet is created by me";
+	}
+
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+   		System.out.println("Servicing......");
+   		//set the content type response
+   		res.setContentType("text/html");
+   		PrintWriter out=res.getWriter();
+   		out.println("<h1>this is my output from Servlet method</h1>");
+   		out.println("<h1>todays date and time is "+ new Date().toString() + "</h1>");
+	}
+}
+
+
+
+
+package com.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+@SuppressWarnings("serial")
+public class SecondServlet extends GenericServlet {
+
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        System.out.println("this is using servlet using Generic Servlet");
+        res.setContentType("text/html");
+        PrintWriter out= res.getWriter();
+        out.println("<h1>this is my second servlet using generic servlet</h1>");
+  }
+}
+
+
+
+<title>to do supply a title</title>
+</head>
+<body>
+	<div>this is my First project</div>
+	hello body
+	<h1>
+		<a href="web" First Servlet></a>
+	</h1>
+	<h1>
+		<a href="second" Second Servlet></a>
+	</h1>
